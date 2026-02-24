@@ -1,0 +1,38 @@
+* {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+}
+.myCardHover {
+    transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+}
+.myCardHover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 44, 92, 0.25);
+}
+
+.border-tab-green {
+    border-left: 3px solid #22c55e;
+}
+.border-tab-red {
+    border-left: 3px solid #e01f1f;
+}
+
+.badge-animated-border-green{
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background: linear-gradient(#E6F9F0,#E6F9F0) padding-box, linear-gradient(90deg,#16ac4d,#abeec4,#16A34A) border-box;
+    background-size: 100% 100%, 200% 100%;
+    animation: borderMove 1.2s linear infinite;
+}
+.badge-animated-border-red{
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background: linear-gradient(#FDECEC,#FDECEC) padding-box, linear-gradient(90deg,#ac1616,#eeabab,#a31616) border-box;
+    background-size: 100% 100%, 200% 100%;
+    animation: borderMove 2.5s linear infinite;
+}
+@keyframes borderMove{
+    to { background-position: 0 0, 200% 0; }
+}
