@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind + daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="./assets/jobs.png" type="image/x-icon">
+    <title>Job Tracker</title>
+
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+            font-optical-sizing: auto;
+        }
+        .myCardHover {
+            transition: all 300ms ease-out;
+        }
+        .myCardHover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 44, 92, 0.25);
+        }
+
+        .badge-animated-border-green{
+            padding: 8px 18px;
+            border-radius: 4px;
+            border: 2px solid transparent;
+            background: linear-gradient(#E6F9F0,#E6F9F0) padding-box, linear-gradient(90deg,#16ac4d,#abeec4,#16A34A) border-box;
+            background-size: 100% 100%, 200% 100%;
+            animation: borderMove 1.2s linear infinite;
+        }
+        .badge-animated-border-red{
+            padding: 8px 18px;
+            border-radius: 4px;
+            border: 2px solid transparent;
+            background: linear-gradient(#FDECEC,#FDECEC) padding-box, linear-gradient(90deg,#ac1616,#eeabab,#a31616) border-box;
+            background-size: 100% 100%, 200% 100%;
+            animation: borderMove 2.5s linear infinite;
+        }
+        @keyframes borderMove{
+            to { background-position: 0 0, 200% 0; }
+        }
+
+    </style>
+</head>
+<body class="bg-base-300 min-h-screen">
+
+    <!-- tracker head -->
+    <header class="w-4/5 mx-auto pt-10 pb-8 space-y-5 border-b-2 border-[#E6E7E9]">
+        <h2 class="text-[#002C5C] text-3xl font-bold">Job Application Tracker</h2>
+
+        <div class="flex flex-col md:flex-row lg:flex-row gap-4">
+            <div class="card bg-base-100 w-full shadow-sm cursor-pointer myCardHover">
+                <div class="card-body">
+                    <h2 class="font-medium text-[#323b49]">Total</h2>
+                    <p id="total-jobs" class="text-[#002C5C] font-bold text-2xl">0</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 w-full shadow-sm cursor-pointer myCardHover">
+                <div class="card-body">
+                    <h2 class="font-medium text-[#323b49]">Interview</h2>
+                    <p id="interview-count" class="text-green-500 font-bold text-2xl">0</p>
+                </div>
+            </div>
+            <div class="card bg-base-100 w-full shadow-sm cursor-pointer myCardHover">
+                <div class="card-body">
+                    <h2 class="font-medium text-[#323b49]">Rejected</h2>
+                    <p id="rejected-count" class="text-red-500 font-bold text-2xl">0</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- section -> Available Jobs -->
+    <section class="sticky top-0 z-20 bg-base-300">
+        <div class="w-4/5 mx-auto mt-7 pb-8 ">
+            <div class="flex justify-between mb-5">
+                <p class="text-lg text-[#002C5C] font-semibold lg:text-xl">Available Jobs</p>
+                <p class="text-xs text-gray-500 font-medium lg:text-sm"><span id="small-total-jobs">0</span> jobs</p>
+            </div>
+            <!-- jobs toggles -->
+            <div class="space-x-2">
+                <button onclick="showOnly('all-jobs'), toggleBtn0()" id="all-btn" class="btn bg-[#1A77F2] text-white px-6 md:px-10">All</button>
+                <button onclick="showOnly('interview-jobs'), toggleBtn1()" id="interview-btn" class="btn bg-white text-gray-500 ">Interview</button>
+                <button onclick="showOnly('rejected-jobs'), toggleBtn2()" id="rejected-btn" class="btn bg-white text-gray-500">Rejected</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- available "All" jobs -->
+    <section id="all-jobs" class="w-4/5 mx-auto pb-10 pt-1 space-y-5">
+        <!-- codes are dynamically added -->
+    </section>
+
+
+    <!-- interview'd  -->
+    <section id="interview-jobs" class="w-4/5 mx-auto pb-24 hidden space-y-5">
+        <div id="interview-empty" class="bg-base-100 h-[400px] flex justify-center items-center flex-col space-y-1">
+            <img src="./assets/jobs.png" alt="">
+            <h3 class="text-lg text-[#002C5C] font-semibold md:text-2xl">No jobs available</h3>
+            <p class="text-xs text-gray-500 md:text-base">Check back soon for new job opportunities</p>
+        </div>
+    </section>
+    
+    <!-- rejected -->
+    <section id="rejected-jobs" class="w-4/5 mx-auto pb-24 hidden space-y-5">
+        <div id="rejected-empty" class="bg-base-100 h-[400px] flex justify-center items-center flex-col space-y-1">
+            <img src="./assets/jobs.png" alt="">
+            <h3 class="text-lg text-[#002C5C] font-semibold md:text-2xl">No jobs available</h3>
+            <p class="text-xs text-gray-500 md:text-base">Check back soon for new job opportunities</p>
+        </div>
+    </section>
+
+
+    <script src="./scripts/machine.js"></script>
+    <script src="./scripts/jobs.js"></script>
+    
+</body>
+</html>
