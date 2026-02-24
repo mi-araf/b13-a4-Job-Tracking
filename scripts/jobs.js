@@ -149,6 +149,9 @@ function statusInterview(id) {
         return;
     }
     
+    // 0. card effect
+    jobCard.classList.remove("border-tab-red");
+    jobCard.classList.add('border-tab-green');
     // 1. change badge
     status.classList.remove('px-3');
     status.innerHTML = `
@@ -180,6 +183,9 @@ function statusRejected(id) {
         return;
     }
     
+    // 0. card effect
+    jobCard.classList.remove("border-tab-green");
+    jobCard.classList.add('border-tab-red');
     // 1. change badge
     status.classList.remove('px-3');
     status.innerHTML = `
