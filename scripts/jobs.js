@@ -150,8 +150,9 @@ function statusInterview(id) {
     }
     
     // 1. change badge
+    status.classList.remove('px-3');
     status.innerHTML = `
-    <span class="mx-2 text-green-700 rounded">INTERVIEW</span>
+    <span class="text-green-700 rounded badge-animated-border-green">INTERVIEW</span>
     `;
     // 2. move the job card
     const jobCardFromBox = jobCard.cloneNode(true);
@@ -180,8 +181,9 @@ function statusRejected(id) {
     }
     
     // 1. change badge
+    status.classList.remove('px-3');
     status.innerHTML = `
-    <span class="mx-2 text-red-700 rounded badge-animated-border">REJECTED</span>
+    <span class="text-red-700 rounded badge-animated-border-red">REJECTED</span>
     `;
     // 2. move the job card
     const jobCardFromBox = jobCard.cloneNode(true);
